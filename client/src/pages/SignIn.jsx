@@ -1,9 +1,11 @@
-import React from 'react'
+import SignInComponent from "../components/SignInComponent.jsx";
 
 const SignIn = () => {
   return (
-    <div>SignIn</div>
-  )
-}
+    <div>
+      <SignInComponent />
+    </div>
+  );
+};
 
-export default SignIn
+export default SignIn;
