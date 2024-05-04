@@ -5,6 +5,8 @@ import SignUp from "./pages/SignUp.jsx";
 import Order from "./pages/Order.jsx";
 import Header from "./components/Header.jsx";
 import Profile from "./pages/Profile.jsx";
+import AboutUs from "./pages/About.jsx";
+import Footer from "./components/Footer.jsx";
 import PrivateComponent from "./components/PrivateComponent.jsx";
 
 function App() {
@@ -12,7 +14,8 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" index element={<Home />}></Route>
+        <Route path="/about" element={<AboutUs />}></Route>
         <Route path="/signin" element={<SignIn />}></Route>
         <Route path="/signup" element={<SignUp />}></Route>
         <Route element={<PrivateComponent />}>
@@ -20,6 +23,7 @@ function App() {
           <Route path="/profile" element={<Profile />}></Route>
         </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
