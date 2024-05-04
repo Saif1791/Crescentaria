@@ -28,14 +28,16 @@ function Header() {
   }, [click]);
 
   return (
-    <header className="relative">
-      <div className="flex flex-row items-center mt-10 ml-40 gap-6">
-        <img
-          src={logo}
-          alt="Mascot Logo"
-          className="rounded-full w-[80px ] h-[80px]"
-        />
-        <h1 className="text-white text-3xl">Crescentaria</h1>
+    <header className="fixed top-0 bg-orange-400 w-screen text-black z-50">
+      <div className="flex flex-row items-center mt-5 ml-40 gap-6">
+        <Link to="/">
+          <img
+            src={logo}
+            alt="Mascot Logo"
+            className="rounded-full w-[80px ] h-[80px]"
+          />
+        </Link>
+        <h1 className="text-black text-3xl">Crescentaria</h1>
 
         <>
           {currentUser && currentUser.avatar ? (
@@ -44,20 +46,25 @@ function Header() {
             </div>
           ) : (
             <div className="ml-[1200px] text-3xl hover:cursor-pointer">
-              <FontAwesomeIcon icon={faUserTie} style={{ color: "#ffffff" }} />
+              <Link to="/profile">
+                <FontAwesomeIcon
+                  icon={faUserTie}
+                  style={{ color: "#ffffff" }}
+                />
+              </Link>
             </div>
           )}
         </>
         <div className="ml-auto mr-32 text-3xl z-50">
           {click ? (
             <MdOutlineClose
-              style={{ color: "white" }}
+              style={{ color: "black" }}
               className="items-center hover:cursor-pointer"
               onClick={toggleClick}
             />
           ) : (
             <HiOutlineViewGridAdd
-              style={{ color: "white" }}
+              style={{ color: "black" }}
               className="items-center hover:cursor-pointer"
               onClick={toggleClick}
             />

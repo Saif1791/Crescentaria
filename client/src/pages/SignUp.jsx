@@ -2,7 +2,7 @@ import SignUpComponent from "../components/SignUpComponent.jsx";
 const SignUp = () => {
   return (
     <div>
-      <SignUpComponent></SignUpComponent>
+      <SignUpComponent />
     </div>
   );
 };

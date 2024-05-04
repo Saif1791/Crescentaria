@@ -170,7 +170,7 @@ const SignUpComponent = () => {
         setError(data.message);
         return;
       }
-      
+
       setLoading(false);
       navigate("/signin");
     } catch (err) {
@@ -181,7 +181,7 @@ const SignUpComponent = () => {
   };
 
   return (
-    <StyledDiv className="flex justify-center align-middle">
+    <StyledDiv className="flex justify-center align-middle mt-56">
       <div className="container">
         <div className="heading">Sign Up</div>
         <p className="text-white text-center font-bold text-xl">{error}</p>
@@ -248,7 +248,7 @@ const SignUpComponent = () => {
           <a href="#">
             Already have an account?{" "}
             <Link to="/signin">
-              <span>Sign In</span>
+              <span className="text-purple-400">Sign In</span>
             </Link>{" "}
             Now!
           </a>

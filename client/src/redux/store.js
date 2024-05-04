@@ -4,7 +4,7 @@ import cartReducer from "./cart/cartSlice.js";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-const rootReducer = combineReducers({ reducer: userReducer, cartReducer });
+const rootReducer = combineReducers({ user: userReducer, cart: cartReducer });
 
 const persistConfig = {
   key: "root",

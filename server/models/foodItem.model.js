@@ -31,8 +31,13 @@ const foodItemSchema = new Schema(
       type: Boolean,
       default: true,
     },
+    provider: {
+      type: String,
+      default: "Main Canteen",
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
+  { strict: false }
 );
 
 const FoodItem = mongoose.model("FoodItem", foodItemSchema);

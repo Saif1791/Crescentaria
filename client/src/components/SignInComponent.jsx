@@ -190,9 +190,10 @@ const SignInComponent = () => {
     }
   };
   return (
-    <StyledDiv className="flex justify-center align-middle">
+    <StyledDiv className="flex justify-center align-middle mt-64">
       <div className="container">
         <div className="heading">Sign In</div>
+        <p className="text-white text-center font-bold text-xl">{error}</p>
         <form className="form" method="POST" onSubmit={handleSubmit}>
           <input
             placeholder="RRN"
@@ -238,7 +239,7 @@ const SignInComponent = () => {
           <a href="#">
             Don't have an account?{" "}
             <Link to="/signup">
-              <span>Sign Up</span>
+              <span className="text-purple-500">Sign Up</span>
             </Link>{" "}
             Now!
           </a>
