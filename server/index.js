@@ -17,7 +17,8 @@ const port = 3000;
 
 var corsOptions = {
   origin: "https://crescentaria-api.vercel.app",
-  optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+  optionsSuccessStatus: 200,
+  methods: ["GET", "POST"],
 };
 
 app.use(cors(corsOptions));
