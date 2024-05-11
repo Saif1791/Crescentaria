@@ -8,6 +8,10 @@ export default defineConfig({
         target: "http://localhost:3000",
         secure: false,
       },
+      "/api": {
+        target: "https://crescentaria-api.vercel.app",
+        secure: true,
+      },
     },
   },
 
