@@ -11,13 +11,20 @@ import getFoodRouter from "./routes/getFood.route.js";
 import orderRouter from "./routes/orderplaced.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
 
 const app = express();
 const port = 3000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
+
+const __dirname = path.resolve();
 
 mongoose
   .connect(process.env.MONGO)
@@ -31,9 +38,6 @@ mongoose
     console.log(err);
   });
 
-app.use("/", (req, res) => {
-  res.send("server works!");
-});
 app.use("/server/user", userRouter);
 app.use("/server", signupRouter);
 app.use("/server", signinRouter);
@@ -42,3 +46,9 @@ app.use("/server", adminsigninRouter);
 app.use("/server", signoutRouter);
 app.use("/server", getFoodRouter);
 app.use("/server/order", orderRouter);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
