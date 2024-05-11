@@ -56,58 +56,60 @@ const Cart = () => {
   };
 
   return (
-    <motion.div
-      className="max-w-2xl mx-auto mt-52 p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-xl"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 4 }}
-    >
-      {orderPlaced && orderPlaced ? (
-        <p className="flex justify-center text-center text-4xl text-black">
-          Order Placed
-        </p>
-      ) : (
-        <>
-          <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
-            Your Cart
-          </h2>
-          {items.length === 0 ? (
-            <p className="text-gray-600">
-              Your cart is empty. Go{" "}
-              <Link to="/" className="text-orange-400">
-                order now
-              </Link>
-              !
-            </p>
-          ) : (
-            <div>
-              {items.map((item) => (
-                <CartItem
-                  key={item._id}
-                  item={item}
-                  onRemove={onRemove}
-                  id={item._id}
-                />
-              ))}
-              <div className="flex justify-between items-center mt-4">
-                <h3 className="text-xl font-bold text-gray-900">Total:</h3>
-                <p className="text-xl text-gray-900">
-                  &#8377;{total.toFixed(2)}
-                </p>
+    <main className="min-h-screen">
+      <motion.div
+        className="max-w-2xl mx-auto mt-52 p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-xl"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 3 }}
+      >
+        {orderPlaced && orderPlaced ? (
+          <p className="flex justify-center text-center text-4xl text-black">
+            Order Placed
+          </p>
+        ) : (
+          <>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">
+              Your Cart
+            </h2>
+            {items.length === 0 ? (
+              <p className="text-gray-600">
+                Your cart is empty. Go{" "}
+                <Link to="/" className="text-orange-400">
+                  order now
+                </Link>
+                !
+              </p>
+            ) : (
+              <div>
+                {items.map((item) => (
+                  <CartItem
+                    key={item._id}
+                    item={item}
+                    onRemove={onRemove}
+                    id={item._id}
+                  />
+                ))}
+                <div className="flex justify-between items-center mt-4">
+                  <h3 className="text-xl font-bold text-gray-900">Total:</h3>
+                  <p className="text-xl text-gray-900">
+                    &#8377;{total.toFixed(2)}
+                  </p>
+                </div>
+                <div className="flex justify-end mt-5 ">
+                  <button
+                    onClick={onOrder}
+                    className="bg-orange-400 p-3 rounded transition ease-in-out hover:scale-110 hover:bg-indigo-500 duration-300"
+                  >
+                    Place Order
+                  </button>
+                </div>
               </div>
-              <div className="flex justify-end mt-5 ">
-                <button
-                  onClick={onOrder}
-                  className="bg-orange-400 p-3 rounded transition ease-in-out hover:scale-110 hover:bg-indigo-500 duration-300"
-                >
-                  Place Order
-                </button>
-              </div>
-            </div>
-          )}
-        </>
-      )}
-    </motion.div>
+            )}
+          </>
+        )}
+      </motion.div>
+    </main>
   );
 };
 

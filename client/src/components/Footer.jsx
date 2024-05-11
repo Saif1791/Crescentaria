@@ -11,11 +11,11 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-orange-400 text-white py-12 bottom-0 right-0 left-0 mt-20">
+    <footer className="bg-orange-400 text-white py-12 w-screen bottom-0 right-0 left-0 mt-[3%]">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 px-8">
         {/* Company Information */}
         <div className="flex flex-col space-y-4">
-          <h3 className="text-3xl font-bold">College Canteen</h3>
+          <h3 className="text-3xl font-bold">Crescentaria</h3>
           <p className="text-white-400">
             We aim to provide a seamless ordering experience and transform the
             way college canteens operate. Join us on our journey to modernize

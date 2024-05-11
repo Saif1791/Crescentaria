@@ -19,7 +19,7 @@ const Home = () => {
   }, [fooditems]);
 
   return (
-    <main>
+    <main className="min-h-screen">
       <div className="flex flex-row justify-center align-middle w-screen mt-96">
         <div className="flex flex-col gap-y-6">
           <h1 className="text-5xl font-semibold">Eat Healthy & Study Well</h1>
