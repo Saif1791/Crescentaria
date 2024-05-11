@@ -31,9 +31,6 @@ mongoose
     console.log(err);
   });
 
-app.use("/", (req, res) => {
-  res.send("server works!");
-});
 app.use("/server/user", userRouter);
 app.use("/server", signupRouter);
 app.use("/server", signinRouter);
