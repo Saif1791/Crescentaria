@@ -16,7 +16,9 @@ const app = express();
 const port = 3000;
 
 app.use(cors({
-  origin: '*'
+  origin: ["https://crescentaria-api.vercel.app"],
+  methods:["POST","GET"],
+  credentials:true,
 }));
 app.use(express.json());
 app.use(cookieParser());
