@@ -15,13 +15,7 @@ import cors from "cors";
 const app = express();
 const port = 3000;
 
-var corsOptions = {
-  origin: "https://crescentaria-api.vercel.app",
-  optionsSuccessStatus: 200,
-  methods: ["GET", "POST"],
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
