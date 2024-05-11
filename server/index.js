@@ -10,10 +10,12 @@ import signoutRouter from "./routes/signout.route.js";
 import getFoodRouter from "./routes/getFood.route.js";
 import orderRouter from "./routes/orderplaced.route.js";
 import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
