@@ -10,7 +10,7 @@ const Home = () => {
 
   useEffect(() => {
     const fetchFood = async () => {
-      const data = await fetch("/server/getFood");
+      const data = await fetch("https://crescentaria-api.vercel.app/getFood");
       const res = await data.json();
       setFoodItems(res);
     };
