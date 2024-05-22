@@ -2,6 +2,9 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig({
+  build: {
+    target: "esnext", //browsers can handle the latest ES features
+  },
   server: {
     proxy: {
       "/server": {
