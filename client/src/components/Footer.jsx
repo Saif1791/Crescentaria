@@ -103,7 +103,7 @@ const Footer = () => {
             Subscribe to Our Newsletter
           </h3>
           <form onSubmit={handleSubscribe}>
-            <div className="flex items-center space-x-2">
+            <div className="flex flex-col items-center space-x-2 space-y-8 lg:flex-row lg:space-y-0">
               <input
                 type="email"
                 placeholder="Your Email"
@@ -125,7 +125,8 @@ const Footer = () => {
 
       {/* Copyright Information */}
       <div className="mt-8 text-center text-white-400">
-        &copy; {new Date().getFullYear()} Crescentaria. All rights reserved.
+        &copy; {new Date().getFullYear()} Crescentaria. <br />
+        All rights reserved.
       </div>
     </footer>
   );
