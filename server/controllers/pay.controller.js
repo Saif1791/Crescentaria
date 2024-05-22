@@ -2,7 +2,6 @@ import axios from "axios";
 import "dotenv/config";
 
 export const payController = async (req, res) => {
-
   const options = {
     method: "POST",
     url: "https://sandbox.cashfree.com/pg/orders",
@@ -11,7 +10,7 @@ export const payController = async (req, res) => {
       "x-api-version": "2022-09-01",
       "content-type": "application/json",
       "x-client-id": "TEST10190479cfb74e1424e438dceaa097409101",
-      "x-client-secret":process.env.CASHFREE_SECRET,
+      "x-client-secret": process.env.CASHFREE_SECRET,
     },
     data: {
       customer_details: {
