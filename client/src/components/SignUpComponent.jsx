@@ -4,8 +4,10 @@ import { useState } from "react";
 
 const StyledDiv = styled.div`
   .container {
-    max-width: 550px;
-    background: #fb923c;
+    ${
+      "" /* max-width: 550px;
+    background: #fb923c; */
+    }
     border-radius: 40px;
     padding: 25px 35px;
     border: 5px solid rgb(255, 255, 255);
@@ -181,8 +183,8 @@ const SignUpComponent = () => {
   };
 
   return (
-    <StyledDiv className="flex justify-center align-middle mt-56">
-      <div className="container">
+    <StyledDiv className="flex justify-center align-middle mt-64 mb-64">
+      <div className="container w-[380px] lg:w-[550px]">
         <div className="heading">Sign Up</div>
         <p className="text-white text-center font-bold text-xl">{error}</p>
         <form className="form" method="POST" onSubmit={handleSubmit}>
@@ -205,7 +207,7 @@ const SignUpComponent = () => {
             onChange={handleChange}
           />
           <input
-            placeholder="RRN"
+            placeholder="Unique ID(UID)"
             id="UID"
             name="UID"
             type="text"
@@ -222,9 +224,7 @@ const SignUpComponent = () => {
             required
             onChange={handleChange}
           />
-          <span className="forgot-password">
-            <a href="#">Forgot Password ?</a>
-          </span>
+
           <button type="submit" className="login-button">
             {loading ? "Signing Up..." : "Sign Up"}
           </button>

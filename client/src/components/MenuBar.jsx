@@ -27,7 +27,7 @@ const MenuBar = () => {
   return (
     <div
       className={
-        "bg-orange-600 min-h-screen w-3/12 flex justify-center z-40 fixed right-0 top-0"
+        "bg-orange-600 min-h-screen min-w-max lg:w-3/12 flex justify-center z-40 fixed right-0 top-0"
       }
     >
       <ul className="flex flex-col gap-20 mt-56 m-20 text-white text-4xl">

@@ -3,14 +3,18 @@ import { motion } from "framer-motion";
 import CartItem from "../components/CartItem.jsx";
 import { Link } from "react-router-dom";
 import { removeFromCart } from "../redux/cart/cartSlice.js";
-import { useState } from "react";
+import { useEffect, useState, version } from "react";
 import { emptyCart } from "../redux/cart/cartSlice.js";
+import { cashfree } from "../cashfree/util.js";
+import axios from "axios";
 
 const Cart = () => {
   const { items } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.user);
   const userName = user.name;
   const [orderPlaced, setOrderPlaced] = useState(false);
+  const [sessionID, setSessionID] = useState("");
+  console.log(sessionID);
   // const [cartItems, setCartItems] = useState(items);
   const dispatch = useDispatch();
 
@@ -21,13 +25,45 @@ const Cart = () => {
     initialTotal
   );
 
+  const getSessionId = async () => {
+    axios
+      .post("/server/pay", { version })
+      .then((res) => {
+        setSessionID(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getSessionId();
+  }, []);
+
+  const handlePayment = () => {
+    let checkoutOptions = {
+      paymentSessionId: sessionID,
+      returnUrl:
+        "https://test.cashfree.com/pgappsdemos/v3success.php?myorder={order_id}",
+    };
+    cashfree.checkout(checkoutOptions).then(function (result) {
+      if (result.error) {
+        alert(result.error.message);
+      }
+      if (result.redirect) {
+        console.log("Redirection");
+      }
+    });
+  };
+
   const onRemove = (id) => {
     dispatch(removeFromCart(id));
     // setCartItems(items.filter((item) => item._id !== id));
   };
 
   const onOrder = async () => {
-    console.log(items);
+    // console.log(items);
+    handlePayment();
     try {
       const res = await fetch("/server/order/create", {
         method: "POST",
@@ -47,7 +83,7 @@ const Cart = () => {
         return;
       }
       setOrderPlaced(true);
-      console.log(data);
+      // console.log(data);
       dispatch(emptyCart());
     } catch (err) {
       console.log(err);
@@ -58,7 +94,7 @@ const Cart = () => {
   return (
     <main className="min-h-screen">
       <motion.div
-        className="max-w-2xl mx-auto mt-52 p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-xl"
+        className="w-5/6 lg:max-w-2xl mx-auto mt-52 p-6 bg-gray-50 border border-gray-200 rounded-lg shadow-xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 3 }}
@@ -99,6 +135,7 @@ const Cart = () => {
                 <div className="flex justify-end mt-5 ">
                   <button
                     onClick={onOrder}
+                    // onClick={handlePayment}
                     className="bg-orange-400 p-3 rounded transition ease-in-out hover:scale-110 hover:bg-indigo-500 duration-300"
                   >
                     Place Order

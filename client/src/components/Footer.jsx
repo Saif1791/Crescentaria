@@ -11,8 +11,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-orange-400 text-white py-12 w-screen bottom-0 right-0 left-0 mt-[3%]">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 px-8">
+    <footer className="bg-orange-400 text-white py-12 relative w-screen bottom-0 mt-[3%]">
+      <div className="container ml-auto mr-auto flex flex-col md:flex md:flex-row gap-10 md:gap-56 px-8">
         {/* Company Information */}
         <div className="flex flex-col space-y-4">
           <h3 className="text-3xl font-bold">Crescentaria</h3>
@@ -53,7 +53,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Quick Links */}
+        {/* Quick Links
         <div>
           <h3 className="text-2xl font-bold mb-4">Quick Links</h3>
           <ul className="space-y-2">
@@ -78,7 +78,7 @@ const Footer = () => {
               </a>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         {/* Contact Information */}
         <div>

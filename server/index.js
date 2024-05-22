@@ -9,6 +9,7 @@ import adminsigninRouter from "./routes/adminsignin.route.js";
 import signoutRouter from "./routes/signout.route.js";
 import getFoodRouter from "./routes/getFood.route.js";
 import orderRouter from "./routes/orderplaced.route.js";
+import payRouter from "./routes/pay.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
@@ -46,6 +47,7 @@ app.use("/server", adminsigninRouter);
 app.use("/server", signoutRouter);
 app.use("/server", getFoodRouter);
 app.use("/server/order", orderRouter);
+app.use("/server", payRouter);
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
