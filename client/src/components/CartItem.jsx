@@ -59,12 +59,14 @@ const CartItem = ({ item, onRemove }) => {
         className="w-20 h-20 object-cover rounded-lg mr-4 transition-transform duration-200"
       />
       <div className="flex-1">
-        <h3 className="text-lg font-bold text-gray-900">{item.name}</h3>
-        <p className="text-sm text-gray-600">{item.description}</p>
-        <p className="text-sm text-gray-600">{item.category}</p>
-        <div className="flex justify-between mt-2">
+        <h3 className="text-sm lg:text-lg font-bold text-gray-900">
+          {item.name}
+        </h3>
+        <p className="text-xs lg:text-sm text-gray-600">{item.description}</p>
+        <p className="text-xs lg:text-sm text-gray-600">{item.category}</p>
+        <div className="flex flex-col lg:flex-row justify-between mt-2 gap-4">
           <div className="flex flex-row gap-5 items-center">
-            <p className="text-sm text-gray-800">Quantity:</p>
+            <p className="text-xs lg:text-sm text-gray-800">Quantity:</p>
             <button
               className="rounded bg-black text-orange-400 p-1 hover:scale-150 active:scale-50"
               onClick={() => decrementQuantities(item._id)}
@@ -87,7 +89,7 @@ const CartItem = ({ item, onRemove }) => {
       </div>
       <div className="flex space-x-4">
         <button
-          className="text-gray-600 hover:text-red-600 transition-colors duration-200"
+          className="text-gray-600 hover:text-red-600 transition-colors duration-200 hidden lg:block"
           onClick={() => onRemove(item._id)}
           title="Remove item"
         >

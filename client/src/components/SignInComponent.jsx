@@ -8,10 +8,10 @@ import {
   userSignInSuccess,
 } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
+
 const StyledDiv = styled.div`
   .container {
-    max-width: 550px;
-    background: #fb923c;
+    ${"" /* background: #fb923c; */}
     border-radius: 40px;
     padding: 25px 35px;
     border: 5px solid rgb(255, 255, 255);
@@ -190,13 +190,13 @@ const SignInComponent = () => {
     }
   };
   return (
-    <StyledDiv className="flex justify-center align-middle mt-64">
-      <div className="container">
+    <StyledDiv className="flex justify-center align-middle mt-64 mb-64">
+      <div className="container w-[380px] lg:w-[550px]">
         <div className="heading">Sign In</div>
-        <p className="text-white text-center font-bold text-xl">{error}</p>
+        <p className="text-red-600 text-center font-bold text-xl">{error}</p>
         <form className="form" method="POST" onSubmit={handleSubmit}>
           <input
-            placeholder="RRN"
+            placeholder="Unique ID(UID)"
             id="UID"
             name="UID"
             type="text"

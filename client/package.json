@@ -11,6 +11,7 @@
     "tailwind": "npx tailwindcss -i ./src/index.css -o ./src/output.css --watch"
   },
   "dependencies": {
+    "@cashfreepayments/cashfree-js": "^1.0.4",
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",
     "@fortawesome/free-regular-svg-icons": "^6.5.2",
@@ -18,6 +19,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@headlessui/react": "^1.7.19",
     "@reduxjs/toolkit": "^2.2.3",
+    "axios": "^1.6.8",
     "framer-motion": "^11.1.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

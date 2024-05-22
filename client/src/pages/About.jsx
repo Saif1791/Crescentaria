@@ -11,7 +11,7 @@ const AboutUs = () => {
     setIsVisible(true); // Triggers the transition when component mounts
   }, []);
   return (
-    <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center p-8 mt-24">
+    <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center p-8 mt-36">
       {/* Page Header */}
       <header className="text-center">
         <h1 className="text-4xl font-bold text-orange-400 mb-4">About Us</h1>
