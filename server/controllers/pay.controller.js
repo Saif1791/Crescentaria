@@ -2,6 +2,8 @@ import axios from "axios";
 import "dotenv/config";
 
 export const payController = async (req, res) => {
+  // const { order_amount } = req.body;
+  // console.log("order money" + order_amount);
   const options = {
     method: "POST",
     url: "https://sandbox.cashfree.com/pg/orders",
@@ -27,7 +29,7 @@ export const payController = async (req, res) => {
   axios
     .request(options)
     .then(function (response) {
-      console.log(response.data);
+      console.log(response.data.order_amount);
       return res.status(200).send(response.data.payment_session_id);
     })
     .catch(function (error) {
@@ -36,10 +38,13 @@ export const payController = async (req, res) => {
     });
 };
 
-export const getOrderStatus = async () => {
+export const getOrderStatus = async (req, res) => {
+  const orderid = req.params.orderid;
+  console.log(orderid);
+
   const options = {
     method: "GET",
-    url: "https://sandbox.cashfree.com/pg/orders/order_id",
+    url: `https://sandbox.cashfree.com/pg/orders/${orderid}`,
     headers: {
       accept: "application/json",
       "x-api-version": "2022-09-01",
@@ -51,7 +56,16 @@ export const getOrderStatus = async () => {
   axios
     .request(options)
     .then(function (response) {
-      console.log(response.data);
+      // console.log(response.data);
+      if (response.data.order_status === "PAID") {
+        return res.redirect(`http://localhost:5173/ordersuccess/${orderid}`);
+      } else if (response.data.order_status === "ACTIVE") {
+        return res.redirect(
+          `http://localhost:5173/${response.data.payment_session_id}`
+        );
+      } else {
+        return res.redirect(`http://localhost:5173/orderfailure/${orderid}`);
+      }
     })
     .catch(function (error) {
       console.error(error);
