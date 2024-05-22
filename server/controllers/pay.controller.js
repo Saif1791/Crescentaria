@@ -36,7 +36,7 @@ export const payController = async (req, res) => {
     });
 };
 
-export const getOrderStatus = () => {
+export const getOrderStatus = async () => {
   const options = {
     method: "GET",
     url: "https://sandbox.cashfree.com/pg/orders/order_id",
