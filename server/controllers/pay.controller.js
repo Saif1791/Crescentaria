@@ -1,6 +1,8 @@
 import axios from "axios";
+import "dotenv/config";
 
 export const payController = async (req, res) => {
+
   const options = {
     method: "POST",
     url: "https://sandbox.cashfree.com/pg/orders",
@@ -9,8 +11,7 @@ export const payController = async (req, res) => {
       "x-api-version": "2022-09-01",
       "content-type": "application/json",
       "x-client-id": "TEST10190479cfb74e1424e438dceaa097409101",
-      "x-client-secret":
-        "cfsk_ma_test_1378773a830aa7b6e021f3e0ac7eadc1_70e9588a",
+      "x-client-secret":process.env.CASHFREE_SECRET,
     },
     data: {
       customer_details: {
@@ -44,8 +45,7 @@ export const getOrderStatus = () => {
       accept: "application/json",
       "x-api-version": "2022-09-01",
       "x-client-id": "TEST10190479cfb74e1424e438dceaa097409101",
-      "x-client-secret":
-        "cfsk_ma_test_1378773a830aa7b6e021f3e0ac7eadc1_70e9588a",
+      "x-client-secret": process.env.CASHFREE_SECRET,
     },
   };
 
