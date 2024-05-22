@@ -24,7 +24,7 @@ const Home = () => {
     };
 
     fetchFood();
-  }, []);
+  }, [fooditems]);
 
   return (
     <main className="text-center lg:text-left">

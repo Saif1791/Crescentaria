@@ -5,7 +5,7 @@ export const userController = (req, res) => {
   res.status(200).json("Hello Saif, this was a success!");
 };
 
-export const updateUser = async (req, res, next) => {
+export const updateUser = async (req, res) => {
   if (req.params.id != req.user.id) {
     res.json("Unauthorized!");
   }

@@ -6,8 +6,8 @@ import jwt from "jsonwebtoken";
 export const signinController = async (req, res) => {
   const { UID } = req.body;
   try {
-    const user =
-      (await User.findOne({ UID: UID })) || (await Admin.findOne({ UID: UID }));
+    const user = await User.findOne({ UID: UID });
+    //|| (await Admin.findOne({ UID: UID }))
     if (!user) {
       res.status(404).json("User not found!");
       return;

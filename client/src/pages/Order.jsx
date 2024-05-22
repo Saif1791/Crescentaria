@@ -13,14 +13,14 @@ const Cart = () => {
   const { user } = useSelector((state) => state.user);
   const userName = user.name;
   const [orderPlaced, setOrderPlaced] = useState(false);
-  const [sessionID, setSessionID] = useState("");
+  const [sessionID, setSessionID] = useState(null);
   console.log(sessionID);
   // const [cartItems, setCartItems] = useState(items);
   const dispatch = useDispatch();
 
   const initialTotal = 0;
-
-  const total = items.reduce(
+  var total = 0;
+  total = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
     initialTotal
   );
@@ -40,12 +40,12 @@ const Cart = () => {
     getSessionId();
   }, []);
 
-  const handlePayment = () => {
+  const handlePayment = async () => {
     let checkoutOptions = {
       paymentSessionId: sessionID,
-      returnUrl:
-        "https://test.cashfree.com/pgappsdemos/v3success.php?myorder={order_id}",
+      returnUrl: `http:localhost:5173/server/status/{order_id}`,
     };
+
     cashfree.checkout(checkoutOptions).then(function (result) {
       if (result.error) {
         alert(result.error.message);
