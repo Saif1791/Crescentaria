@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node index.js",
+    "dev": "nodemon index.js",
     "build": "npm install && cd ../client && npm install && npm run build"
   },
   "author": "Saif Z",
@@ -24,6 +24,7 @@
     "mongodb-migrate": "^2.0.2",
     "mongoose": "^8.2.3",
     "node-fetch": "^3.3.2",
+    "nodemailer": "^6.9.14",
     "nodemon": "^3.1.0",
     "sha256": "^0.2.0",
     "uniqid": "^5.4.0"
