@@ -4,8 +4,21 @@ import { useState } from "react";
 const Footer = () => {
   const [email, setEmail] = useState("");
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
+    try {
+      const res = await fetch(`/server/newsletter`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
     console.log(`Subscribed with email: ${email}`);
     setEmail("");
   };

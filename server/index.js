@@ -10,9 +10,11 @@ import signoutRouter from "./routes/signout.route.js";
 import getFoodRouter from "./routes/getFood.route.js";
 import orderRouter from "./routes/orderplaced.route.js";
 import payRouter from "./routes/pay.route.js";
+import newsletterRouter from "./routes/newsletter.route.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import path from "path";
+import { sendEmail } from "./utils/mail.js";
 
 const app = express();
 const port = 3000;
@@ -48,9 +50,16 @@ app.use("/server", signoutRouter);
 app.use("/server", getFoodRouter);
 app.use("/server/order", orderRouter);
 app.use("/server", payRouter);
+app.use("/server", newsletterRouter);
 
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client", "dist", "index.html"));
 });
+
+// sendEmail(
+//   "saifsep17@gmail.com",
+//   "this is test from external function",
+//   "I am only a test saif"
+// );
