@@ -7,8 +7,8 @@ export const sendEmail = (to, subject, text) => {
     port: 587,
     secure: false,
     auth: {
-      user: "crescentaria2024@gmail.com",
-      pass: "iwkj ajfy duzj lqvl",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
