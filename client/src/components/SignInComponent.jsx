@@ -8,6 +8,8 @@ import {
   userSignInSuccess,
 } from "../redux/user/userSlice.js";
 import { useDispatch } from "react-redux";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { app } from "../firebase/config.js";
 
 const StyledDiv = styled.div`
   .container {
@@ -189,6 +191,47 @@ const SignInComponent = () => {
       setError(err);
     }
   };
+
+  const signInWithGoogle = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      dispatch(userSignInStart());
+
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth(app);
+
+      const res = await signInWithPopup(auth, provider);
+      console.log(res);
+      const result = await fetch("/server/googleauth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: res.user.email,
+          UID: res.user.email.slice(0, res.user.email.indexOf("@")),
+        }),
+      });
+
+      const data = await result.json();
+      setLoading(false);
+
+      if (data.success === false) {
+        setLoading(false);
+        setError(data.message);
+        return;
+      } else {
+        dispatch(userSignInSuccess(data));
+        navigate("/");
+      }
+    } catch (err) {
+      dispatch(userSignInFailure(err.message));
+      setLoading(false);
+      console.log(err);
+    }
+  };
+
   return (
     <StyledDiv className="flex justify-center align-middle mt-64 mb-64">
       <div className="container w-[380px] lg:w-[550px]">
@@ -223,7 +266,7 @@ const SignInComponent = () => {
         <div className="social-account-container">
           <span className="title">Or Sign in with</span>
           <div className="social-accounts">
-            <button className="social-button google">
+            <button className="social-button google" onClick={signInWithGoogle}>
               <svg
                 viewBox="0 0 488 512"
                 height="1em"
