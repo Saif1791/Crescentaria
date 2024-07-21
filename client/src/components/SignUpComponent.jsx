@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { app } from "../firebase/config";
 
 const StyledDiv = styled.div`
   .container {
@@ -149,6 +151,7 @@ const SignUpComponent = () => {
   const [error, setError] = useState(null);
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.id]: event.target.value });
   };
@@ -179,6 +182,44 @@ const SignUpComponent = () => {
       setLoading(false);
       console.log(err);
       setError(err);
+    }
+  };
+
+  const signUpWithGoogle = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+
+      const provider = new GoogleAuthProvider();
+      const auth = getAuth(app);
+
+      const res = await signInWithPopup(auth, provider);
+      console.log(res);
+      const result = await fetch("/server/googleauth", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: res.user.displayName,
+          email: res.user.email,
+          avatar: res.user.photoURL,
+          UID: res.user.email.slice(0, res.user.email.indexOf("@")),
+        }),
+      });
+
+      const data = await result.json();
+      setLoading(false);
+
+      if (data.success === false) {
+        setLoading(false);
+        setError(data.message);
+        return;
+      } else {
+        navigate("/signin");
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -232,7 +273,7 @@ const SignUpComponent = () => {
         <div className="social-account-container">
           <span className="title">Or Sign Up with</span>
           <div className="social-accounts">
-            <button className="social-button google">
+            <button className="social-button google" onClick={signUpWithGoogle}>
               <svg
                 viewBox="0 0 488 512"
                 height="1em"

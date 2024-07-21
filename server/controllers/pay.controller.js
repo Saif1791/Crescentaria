@@ -58,13 +58,13 @@ export const getOrderStatus = async (req, res) => {
     .then(function (response) {
       // console.log(response.data);
       if (response.data.order_status === "PAID") {
-        return res.redirect(`http://localhost:5173/ordersuccess/${orderid}`);
+        return res.redirect(`/ordersuccess/${orderid}`);
       } else if (response.data.order_status === "ACTIVE") {
         return res.redirect(
           `http://localhost:5173/${response.data.payment_session_id}`
         );
       } else {
-        return res.redirect(`http://localhost:5173/orderfailure/${orderid}`);
+        return res.redirect(`/orderfailure/${orderid}`);
       }
     })
     .catch(function (error) {
