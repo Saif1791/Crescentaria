@@ -1,8 +1,11 @@
+import { lazy, Suspense } from "react";
+
 import Mainbutton from "../components/Mainbutton.jsx";
 import Secondarybutton from "../components/Secondarybutton.jsx";
 import cooking from "../assets/cooking.gif";
 import { useEffect, useState } from "react";
-import ListingItem from "../components/ListingItem.jsx";
+// import ListingItem from "../components/ListingItem.jsx";
+const ListingItem = lazy(() => import("../components/ListingItem.jsx"));
 import { Link } from "react-router-dom";
 
 const Home = () => {
@@ -63,9 +66,15 @@ const Home = () => {
         </h1>
 
         <div className="flex flex-wrap gap-4 justify-evenly mt-20 lg:mt-36">
-          {fooditems.map((listing) => (
-            <ListingItem listing={listing} key={listing._id} id={listing._id} />
-          ))}
+          <Suspense fallback={<div className="text-white">Loading...</div>}>
+            {fooditems.map((listing) => (
+              <ListingItem
+                listing={listing}
+                key={listing._id}
+                id={listing._id}
+              />
+            ))}
+          </Suspense>
         </div>
       </div>
     </main>
