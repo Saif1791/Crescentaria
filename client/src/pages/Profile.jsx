@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 const StyledDiv = styled.div`
   .form_main {
     width: 280px;
+    max-width: 90vw;
     display: flex;
     flex-direction: column;
     align-items: center;

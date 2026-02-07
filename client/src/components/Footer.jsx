@@ -24,8 +24,8 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-orange-400 text-white py-12 relative w-screen bottom-0 mt-[3%]">
-      <div className="container ml-auto mr-auto flex flex-col md:flex md:flex-row gap-10 md:gap-56 px-8">
+    <footer className="bg-orange-400 text-white py-12 relative w-full bottom-0 mt-[3%]">
+      <div className="container mx-auto flex flex-col md:flex-row gap-10 md:gap-16 lg:gap-32 xl:gap-56 px-4 md:px-8">
         {/* Company Information */}
         <div className="flex flex-col space-y-4">
           <h3 className="text-3xl font-bold">Crescentaria</h3>

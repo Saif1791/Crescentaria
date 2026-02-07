@@ -35,7 +35,7 @@ const Home = () => {
             <iframe src="https://lottie.host/embed/0bb0a6bf-5b4e-4640-b933-42b95acf2b44/bpBahTfpYb.json"></iframe>
           </div> */}
 
-      <div className="flex flex-row justify-center align-middle w-screen mt-60 lg:mt-96 text-center lg:text-left">
+      <div className="flex flex-row justify-center align-middle w-full mt-60 lg:mt-96 text-center lg:text-left px-4">
         <div className="flex flex-col gap-y-6">
           <h1 className="text-5xl font-semibold">Eat Healthy & Study Well</h1>
           <h1 className="text-5xl font-semibold text-orange-400">

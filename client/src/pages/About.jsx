@@ -66,8 +66,8 @@ const AboutUs = () => {
             <h2 className="text-3xl font-semibold text-gray-800 text-center mb-20">
               Meet the <strong>Brains</strong> behind Crescentaria
             </h2>
-            <div className="flex flex-wrap justify-between gap-6">
-              <div className="w-full md:w-1/3 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 justify-center">
+              <div className="w-full text-center">
                 <img
                   src={saif}
                   alt="CEO"
@@ -81,7 +81,7 @@ const AboutUs = () => {
                 </p>
               </div>
 
-              <div className="w-full md:w-1/3 text-center">
+              <div className="w-full text-center">
                 <img
                   src={fouzan}
                   alt="CTO"
@@ -95,7 +95,7 @@ const AboutUs = () => {
                 </p>
               </div>
 
-              <div className="w-full md:w-1/3 text-center flex flex-col justify-center items-center">
+              <div className="w-full text-center flex flex-col justify-center items-center">
                 <img
                   src={narendran}
                   alt="CMO & CCEO"

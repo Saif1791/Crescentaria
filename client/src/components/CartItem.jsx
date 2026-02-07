@@ -89,7 +89,7 @@ const CartItem = ({ item, onRemove }) => {
       </div>
       <div className="flex space-x-4">
         <button
-          className="text-gray-600 hover:text-red-600 transition-colors duration-200 hidden lg:block"
+          className="text-gray-600 hover:text-red-600 transition-colors duration-200 block p-2 text-xl"
           onClick={() => onRemove(item._id)}
           title="Remove item"
         >

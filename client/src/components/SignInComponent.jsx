@@ -12,19 +12,43 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { app } from "../firebase/config.js";
 
 const StyledDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at 10% 10%, rgba(251, 146, 60, 0.4) 0%, transparent 40%),
+              radial-gradient(circle at 90% 90%, rgba(234, 88, 12, 0.4) 0%, transparent 40%);
+  padding-top: 120px;
+  padding-bottom: 40px;
+
   .container {
-    ${"" /* background: #fb923c; */}
-    border-radius: 40px;
-    padding: 25px 35px;
-    border: 5px solid rgb(255, 255, 255);
-    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 30px 30px -20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .heading {
     text-align: center;
-    font-weight: 900;
-    font-size: 30px;
+    font-weight: 800;
+    font-size: 32px;
     color: white;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
   }
 
   .form {
@@ -33,120 +57,131 @@ const StyledDiv = styled.div`
 
   .form .input {
     width: 100%;
-    color: black;
-    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     padding: 15px 20px;
-    border-radius: 20px;
+    border-radius: 12px;
     margin-top: 15px;
-    box-shadow: black 0px 10px 10px -5px;
-    border-inline: 2px solid transparent;
+    font-size: 16px;
+    transition: all 0.3s ease;
   }
 
   .form .input:focus {
     outline: none;
-    border-inline: 2px solid black;
+    background: white;
+    border-color: #fb923c;
+    box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.1);
+    transform: translateY(-2px);
   }
 
   .form .forgot-password {
     display: block;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 15px;
+    text-align: right;
   }
 
   .form .forgot-password a {
     font-size: 14px;
-    color: white;
+    color: #4b5563;
     text-decoration: none;
-    font-style: bold;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .form .forgot-password a:hover {
+    color: #ea580c;
   }
 
   .form .login-button {
     display: block;
     width: 100%;
     font-weight: bold;
-    background: linear-gradient(to right, #3b82f6, #a855f7);
+    background: linear-gradient(135deg, #fb923c, #ea580c);
     color: white;
     padding-block: 15px;
-    margin: 20px auto;
-    border-radius: 20px;
-    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px;
+    margin: 30px auto 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(234, 88, 12, 0.3), 0 2px 4px -1px rgba(234, 88, 12, 0.1);
     border: none;
-    transition: all 0.5s ease-in-out;
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
   }
 
   .form .login-button:hover {
     cursor: pointer;
-    transform: scale(1.05);
-    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(234, 88, 12, 0.4), 0 4px 6px -2px rgba(234, 88, 12, 0.2);
   }
 
   .form .login-button:active {
-    transform: scale(0.95);
-    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px;
+    transform: translateY(0);
   }
 
   .social-account-container {
     margin-top: 25px;
+    position: relative;
   }
 
   .social-account-container .title {
     display: block;
     text-align: center;
-    font-size: 15px;
-    color: white;
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 20px;
   }
 
   .social-account-container .social-accounts {
     width: 100%;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
   }
 
   .social-account-container .social-accounts .social-button {
-    background: linear-gradient(to right, #3b82f6, #a855f7);
-    border: 3px solid white;
-    padding: 5px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    padding: 10px;
     border-radius: 50%;
-    width: 40px;
-    aspect-ratio: 1;
-    display: grid;
-    place-content: center;
-    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 12px 10px -8px;
-    transition: all 0.3s ease-in-out;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
   }
 
   .social-account-container .social-accounts .social-button .svg {
-    fill: white;
-    margin: auto;
+    width: 24px;
+    height: 24px;
+    fill: #ea4335;
   }
 
   .social-account-container .social-accounts .social-button:hover {
-    transform: scale(1.2);
-  }
-
-  .social-account-container .social-accounts .social-button:active {
-    transform: scale(0.9);
+    transform: scale(1.1);
+    border-color: #fb923c;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
 
   .agreement {
     display: block;
     text-align: center;
-    margin-top: 15px;
-    color: white;
-    font-weight: bold;
+    margin-top: 25px;
+    color: #6b7280;
+    font-size: 14px;
   }
 
   .agreement a {
     text-decoration: none;
-    color: white;
-    font-size: 15px;
-    font-weight: bold;
+    color: #6b7280;
+    font-weight: 500;
   }
 
-  .agreement span:hover {
-    text-decoration: underline;
-    cursor: pointer;
+  .agreement a span {
+    color: #ea580c;
+    font-weight: 700;
+    margin-left: 4px;
   }
 `;
 
@@ -233,7 +268,7 @@ const SignInComponent = () => {
   };
 
   return (
-    <StyledDiv className="flex justify-center align-middle mt-64 mb-64">
+    <StyledDiv>
       <div className="container w-[380px] lg:w-[550px]">
         <div className="heading">Sign In</div>
         <p className="text-red-600 text-center font-bold text-xl">{error}</p>
@@ -282,7 +317,7 @@ const SignInComponent = () => {
           <a href="#">
             Don't have an account?{" "}
             <Link to="/signup">
-              <span className="text-purple-500">Sign Up</span>
+              <span className="text-orange-400">Sign Up</span>
             </Link>{" "}
             Now!
           </a>

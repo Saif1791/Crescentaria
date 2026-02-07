@@ -2,7 +2,7 @@ import logo from "../assets/logo.png";
 import { HiOutlineViewGridAdd } from "react-icons/hi";
 import { MdOutlineClose } from "react-icons/md";
 import MenuBar from "./MenuBar.jsx";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { Transition } from "@headlessui/react";
 // import { useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -28,13 +28,13 @@ function Header() {
   }, [click]);
 
   return (
-    <header className="fixed top-0 bg-orange-400 w-screen text-black z-50">
-      <div className="flex flex-row items-center p-5 sm:p-5 md:p-5 lg:p-5 lg:ml-52 xl:px-20">
+    <header className="fixed top-0 bg-orange-400 w-full text-black z-50 shadow-md transition-all duration-300">
+      <div className="flex flex-row items-center py-2 px-4 sm:px-6 lg:px-8 lg:py-3 lg:ml-10 xl:px-20 justify-between lg:justify-normal">
         <Link to="/">
           <img
             src={logo}
             alt="Mascot Logo"
-            className="rounded w-[100px] h-[100px]"
+            className="rounded w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 transition-all duration-300 object-contain"
           />
         </Link>
         {/* <h1 className="text-black text-3xl ml-5">Crescentaria</h1> */}
@@ -42,12 +42,12 @@ function Header() {
           <Link to="/profile">
             <FontAwesomeIcon
               icon={faUserTie}
-              style={{ color: "#ffffff" }}
+              style={{ color: "#000000" }}
               className="hover:cursor-pointer hidden sm:block"
             />
           </Link>
 
-          <div className="ml-auto mr-10 text-3xl z-50 sm:mr-auto">
+          <div className="relative ml-auto mr-10 text-3xl z-[60] sm:mr-auto">
             {click ? (
               <MdOutlineClose
                 style={{ color: "black" }}
@@ -66,16 +66,17 @@ function Header() {
       </div>
 
       <Transition
+        as={Fragment}
         appear={true}
         show={click}
-        enter="transition ease-in-out duration-1000 transform"
+        enter="transition ease-in-out duration-700 transform"
         enterFrom="translate-x-full"
         enterTo="translate-x-0"
-        leave="transition ease-in-out duration-1000 transform"
+        leave="transition ease-in-out duration-700 transform"
         leaveFrom="translate-x-0"
         leaveTo="translate-x-full"
       >
-        <MenuBar />
+        <MenuBar onClick={toggleClick} />
       </Transition>
     </header>
   );
